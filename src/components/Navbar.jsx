@@ -1,8 +1,20 @@
-import React from 'react';
-import { NavLink } from 'react-router';
-import user from '../assets/user.png';
+import React, { use } from 'react';
+import { Link, NavLink } from 'react-router';
+import userIcon from '../assets/user.png';
+import { AuthContext } from '../provider/AuthProvider';
 
 const Navbar = () => {
+
+    const {user, logOut} = use(AuthContext)
+    const handleLogOut = ()=>{
+        logOut()
+        .then(()=>{
+            alert("Sign Out Successfully");
+        }).catch((error)=>{
+            console.log(error);
+        })
+    }
+
     return (
         <div className='flex items-center justify-between'>
             <div></div>
@@ -12,8 +24,14 @@ const Navbar = () => {
                 <NavLink to="/career">Career</NavLink>
             </div>
             <div className='login-btn flex items-center gap-5'>
-                <img src={user} alt="User icon" />
-                <button className='btn btn-primary px-10'>Login</button>
+                <img src={userIcon} alt="User icon" />
+                {
+                    user ? (
+                        <button onClick={handleLogOut} className='btn btn-primary px-10'>Logout</button>
+                    ) : (
+                        <Link to={"/auth/login"} className='btn btn-primary px-10'>Login</Link>
+                    )
+                }
             </div>
         </div>
     );
