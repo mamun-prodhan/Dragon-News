@@ -8,6 +8,8 @@ import Register from "../components/authlayout/Register";
 import NewsDetails from "../page/NewsDetails";
 import PrivateRoutes from "./PrivateRoutes";
 import Loading from "../page/Loading";
+import AboutPage from "../page/AboutPage";
+import CareerPage from "../page/CareerPage";
 
 const router = createBrowserRouter([
     {
@@ -47,6 +49,14 @@ const router = createBrowserRouter([
         </PrivateRoutes>),
         hydrateFallbackElement: <Loading></Loading>,
         loader: ()=> fetch("/news.json")
+    },
+    {
+        path: "/about",
+        element: <AboutPage></AboutPage>
+    },
+    {
+        path: "/career",
+        element: <CareerPage></CareerPage>
     },
     {
         path: "/*",
