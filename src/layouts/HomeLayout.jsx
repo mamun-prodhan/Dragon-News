@@ -21,13 +21,13 @@ const HomeLayout = () => {
                 </nav>
             </header>
             <main className='w-11/12 mx-auto my-5 grid grid-cols-12 gap-5'>
-                <aside className='col-span-3 top-5 h-fit sticky'>
+                <aside className='col-span-12 md:col-span-3 order-1 md:order-1  md:top-5 md:h-fit md:sticky'>
                     <LeftAside></LeftAside>
                 </aside>
-                <section className="main col-span-6">
+                <section className="main col-span-12 md:col-span-6 order-2 md:order-2">
                    {state == "loading" ? <Loading></Loading> :  <Outlet></Outlet>}
                 </section>
-               <aside className='col-span-3 top-5 h-fit sticky'>
+               <aside className='order-3 md:order-3 col-span-12 md:col-span-3 md:top-5 md:h-fit md:sticky'>
                 <RightAside></RightAside>
                </aside>
             </main>
